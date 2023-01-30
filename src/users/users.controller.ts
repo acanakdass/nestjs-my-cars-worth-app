@@ -14,8 +14,19 @@ export class UsersController {
         console.log(createUserDto)
         this.usersService.create(createUserDto)
     }
+
+    @Get('/usersList')
+    async getAll() {
+        var res = await this.usersService.getAll();
+        return res;
+    }
+    @Get('/:id')
+    getUser(@Param('id') id: string) {
+        return this.usersService.getById(parseInt(id));
+    }
+
     @Delete('/delete-user/:id')
-    deleteUser(@Param('id') id :number) {
+    deleteUser(@Param('id') id: number) {
         console.log(id)
         return this.usersService.delete(id)
     }
